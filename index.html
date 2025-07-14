@@ -18,7 +18,55 @@
             font-weight: 600;
             line-height: 1.6;
             color: #333;
-            background: #fff;
+            background: linear-gradient(-45deg, #ffffff, #f8f9fa, #e3f2fd, #e0f2f1);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Gradient */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Stars Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #40E0D0, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(64, 224, 208, 0.6), transparent),
+                radial-gradient(1px 1px at 90px 40px, #40E0D0, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(64, 224, 208, 0.4), transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(64, 224, 208, 0.8), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: sparkle 20s linear infinite;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        @keyframes sparkle {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(200px);
+            }
         }
 
         /* Navigation */
@@ -31,7 +79,6 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 20px 0;
-            border-bottom: 1px solid #eee;
         }
 
         .nav-container {
@@ -146,7 +193,51 @@
             font-weight: bold;
         }
 
-        /* Featured Work Section */
+        /* About Me Section */
+        .about-section {
+            padding: 100px 20px;
+            background: #fff;
+        }
+
+        .about-section .container {
+            background: #f0f8ff;
+            padding: 60px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-photo {
+            width: 100%;
+            max-width: 300px;
+            height: 400px;
+            background: linear-gradient(135deg, #40E0D0, #36c5c0);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(64,224,208,0.3);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #444;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
         .featured-work {
             padding: 100px 20px;
             background: white;
@@ -302,10 +393,25 @@
                 align-items: center;
             }
 
-            .profile-photo {
-                width: 180px;
-                height: 180px;
-                font-size: 2.5rem;
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .about-photo {
+                max-width: 250px;
+                height: 300px;
+                margin: 0 auto;
+            }
+
+            .hero-container,
+            .about-section .container,
+            .featured-work .container,
+            .projects-section .container,
+            .contact-section .container {
+                padding: 30px 20px;
+                margin: 0 10px;
             }
         }
 
@@ -320,10 +426,18 @@
                 justify-content: center;
             }
 
-            .profile-photo {
-                width: 150px;
-                height: 150px;
-                font-size: 2rem;
+            .about-photo {
+                max-width: 200px;
+                height: 250px;
+            }
+
+            .hero-container,
+            .about-section .container,
+            .featured-work .container,
+            .projects-section .container,
+            .contact-section .container {
+                padding: 20px 15px;
+                margin: 0 5px;
             }
         }
     </style>
@@ -333,6 +447,7 @@
     <nav>
         <div class="nav-container">
             <div class="nav-links">
+                <a href="#about">About</a>
                 <a href="#projects">Projects</a>
                 <a href="#skills">Skills</a>
                 <a href="#tools">Tools</a>
@@ -344,10 +459,30 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
-            <div class="profile-photo">JH</div>
             <div class="hero-text">
                 <p class="description">Hey, I'm <span class="name-highlight">John Hinek</span>. I'm a Growth & Performance Marketer with experience leading multi-channel campaigns from 0-1 to drive user growth and engagement.</p>
                 <a href="#projects" class="cta-button">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-photo">JH</div>
+                <div class="about-text">
+                    <p>After graduating from UCLA in 2020, I joined a luxury food startup as employee #2, where I managed everything from product development to launch. I learned how to build processes from scratch, succeed with limited resources, and adapt quickly to the shifting needs of a growing startup. The role gave me room to be both inventive and resourceful.</p>
+                    
+                    <p>That foundation carried into my next roles. At Mage, I joined as the first marketing lead and employee #6, positioning our AI platform before the broader wave of adoption. This required us to market both the product and the possibilities of AI/ML itself. I built the marketing engine from the ground up: leading SEO strategy and implementation, developing partnerships with media and open-source contributors, and growing a community of over 7,000 data professionals through creative digital marketing.</p>
+                    
+                    <p>I later joined Underline, where I expanded my scope and marketed to a broader, more diverse audience base. I experimented with messaging across digital channels, events, and out-of-home campaigns, gaining a deeper understanding of how to adapt strategy across different formats and funnel stages.</p>
+                    
+                    <p>I returned to Mage with a more strategic lens, leading full-funnel demand programs for Mage Pro. My focus was on combining product, lifecycle, and ABM strategies—building campaigns across email, paid media, and in-product surfaces, and using AI tools to scale messaging for different user segments. I helped transition the company's marketing motion from open-source education to demand capture, aligning brand and performance efforts around growth.</p>
+                    
+                    <p>Starting my career at early-stage companies taught me how to stay flexible, adapt to a wide range of situations, and approach challenges with both creativity and analytical rigor. I focus on generating innovative ideas, thinking through their implications, and using tools like LLMs and agents as force multipliers to optimize the marketing workflow.</p>
+                </div>
             </div>
         </div>
     </section>
